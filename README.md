@@ -24,29 +24,65 @@ Alembic (for database migrations)
 
 SQLite (default database, but can be configured for PostgreSQL/MySQL)
 
-Installation
+Installation and Setup
 
-Clone the Repository:
+1️⃣ Clone the Repository
 
 git clone https://github.com/Kohmmz/Car-Rental-System.git
 cd Car-Rental-System
 
-Set Up the Virtual Environment and Install Dependencies:
+2️⃣ Set Up the Virtual Environment and Install Dependencies
 
 pipenv install
 pipenv shell
 
-Set Up the Database:
+3️⃣ Apply Database Migrations
 
 alembic upgrade head
 
-Start the CLI:
+4️⃣ Start the CLI
 
 python lib/cli.py
 
 🎉 You're ready to go! 🚗💨
 
+Managing Database Migrations
 
+If you've made any changes to your SQLAlchemy models (Car, Customer, Rental), you need to generate a new migration:
+
+alembic revision --autogenerate -m "describe your change here"
+
+Example:
+
+alembic revision --autogenerate -m "Added new field to Car model"
+
+This command will scan your lib/model.py file and create a new migration file inside the migrations/versions/ folder.
+
+Apply the New Migration to Your Database
+
+After generating the migration, apply it using:
+
+alembic upgrade head
+
+This updates your SQLite database schema to match the latest version of your SQLAlchemy models.
+
+Checking Applied Migrations
+
+To see all migrations that have been applied, use:
+
+alembic history
+
+To check the current version of the database, run:
+
+alembic current
+
+Undoing a Migration
+
+If the migration breaks something and you need to go one step back, use:
+
+alembic downgrade -1
+
+If you need to go back multiple steps, replace -1 with the number of steps (e.g., -2, -3, etc.).
 
 Usage
 
