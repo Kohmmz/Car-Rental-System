@@ -88,6 +88,7 @@ alembic downgrade -1  # Roll back last migration
 
 ## 🔮 Future Enhancements
 🔹 **GUI Version** - Implement a graphical interface.
+
 🔹 **External API Integration** - Fetch real-time car pricing & availability.
 
 ---
